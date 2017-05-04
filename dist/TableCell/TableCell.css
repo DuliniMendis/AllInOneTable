@@ -1,0 +1,54 @@
+.cell, .table-header-cell, .table-cell {
+  font: Roboto, Helvetica, sans-serif;
+  text-align: center;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-transition: background-color 0.5s, font-size 0.5s;
+  transition: background-color 0.5s, font-size 0.5s; }
+
+.table-header-cell {
+  background-color: #26A69A;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: move;
+  height: 40px;
+  padding: 10px 0; }
+
+.table-header-cell:hover, .table-header-cell:active {
+  background-color: #3c8c84; }
+
+.table-cell {
+  color: #212121;
+  height: 35px;
+  font-size: 12px;
+  padding: 10px 0; }
+
+.sort-text {
+  cursor: pointer; }
+
+.sort-text:hover, .sort-text:active {
+  font-size: 16px; }
+
+.isEditing {
+  padding: 0px; }
+
+.clickable {
+  cursor: pointer; }
+
+.selected {
+  background: #e8951e;
+  color: #ffffff; }
+
+input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ffffff;
+  box-shadow: inset 0px 0px 5px #26A69A;
+  padding: 3px;
+  margin: 0px; }
+
+.btn {
+  width: 90%;
+  text-align: center; }

@@ -1,0 +1,44 @@
+@import '../styles/theme.scss';
+
+.sort-container{
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+.sort-panel{
+	background-color: $color-light;
+	border: 1px solid $color-mid-light;
+	border-top:none;
+	border-left:none;
+	position:absolute;
+	display: inline-block;
+	box-sizing: border-box;
+};
+
+
+.sortable-pane{
+	width:100%;
+	height:100%;
+	position:relative;
+	overflow-x:scroll;
+}
+
+
+.sortable-pane::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: $color-mid;
+}
+
+.sortable-pane::-webkit-scrollbar
+{
+	height: 8px;
+	background-color: $color-dark;
+
+}
+
+.sortable-pane::-webkit-scrollbar-thumb
+{
+	background-color: $color-dark;
+	border-radius: 5px;
+}
