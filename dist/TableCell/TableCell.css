@@ -1,4 +1,4 @@
-@import url(../styles/font-awesome.min.css);
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 .cell, .table-header-cell, .table-cell {
   font-family: Roboto, Helvetica, sans-serif;
   text-align: center;
