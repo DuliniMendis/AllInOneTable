@@ -10,11 +10,15 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AllInOneTable = require('./components/AllInOneTable');
+var _AllInOneTable = require('./AllInOneTable');
 
 var _AllInOneTable2 = _interopRequireDefault(_AllInOneTable);
 
 require('./App.css');
+
+var _reactFontawesome = require('react-fontawesome');
+
+var _reactFontawesome2 = _interopRequireDefault(_reactFontawesome);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33,6 +37,8 @@ var App = function (_Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
     _this.state = {
+      sortDirectionAsc: true,
+      sortField: "",
       data: [{
         code: "j000",
         label: "Software Engineer",
@@ -105,26 +111,51 @@ var App = function (_Component) {
 
   _createClass(App, [{
     key: 'handleSort',
-    value: function handleSort(value) {
-      this.setState({ data: newData });
+    value: function handleSort(field) {
+      var _this2 = this;
+
+      var data = this.state.data.slice();
+
+      console.log(data[0][field] > data[1][field]);
+      var sortedData = data.sort(function (a, b) {
+        if (_this2.state.sortDirectionAsc) {
+          if (a[field] > b[field]) return 1;else if (a[field] < b[field]) return -1;else return 0;
+        } else {
+          if (a[field] > b[field]) return -1;else if (a[field] < b[field]) return 1;else return 0;
+        }
+      });
+      this.setState({
+        data: sortedData,
+        sortDirectionAsc: !this.state.sortDirectionAsc,
+        sortField: field
+      });
     }
   }, {
     key: 'handleEdit',
-    value: function handleEdit(code, value) {}
+    value: function handleEdit(code, field, value) {
+      var data = this.state.data;
+      var itemIndex = data.findIndex(function (item) {
+        return item.code === code;
+      });
+      data[itemIndex][field] = value;
+      this.setState({ data: data });
+    }
   }, {
     key: 'handleClick',
-    value: function handleClick(code, value) {}
+    value: function handleClick(code, field, value) {}
   }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'App' },
-        _react2.default.createElement(AllInOneTable, {
+        _react2.default.createElement(_AllInOneTable2.default, {
           data: this.state.data,
+          sortField: this.state.sortField,
+          sortDirection: this.state.sortDirectionAsc,
           sortAction: this.handleSort.bind(this),
-          editAction: this.handleEdits.bind(this),
-          clickAction: this.hanldeClick.bind(this) })
+          editAction: this.handleEdit.bind(this),
+          clickAction: this.handleClick.bind(this) })
       );
     }
   }]);

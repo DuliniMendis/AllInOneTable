@@ -10,17 +10,13 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _tableColumn = require("../tableColumn");
+var _TableColumn = require("../TableColumn");
 
-var _tableColumn2 = _interopRequireDefault(_tableColumn);
+var _TableColumn2 = _interopRequireDefault(_TableColumn);
 
 require("./TableContainer.css");
 
 var _reactSortablePane = require("react-sortable-pane");
-
-var _reactDimensions = require("react-dimensions");
-
-var _reactDimensions2 = _interopRequireDefault(_reactDimensions);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45,44 +41,49 @@ var TableContainer = function (_React$Component) {
       var _this2 = this;
 
       var columnNum = Object.keys(this.props.data[0]).length;
-      var columnWidth = Math.round(this.props.width / columnNum);
+      var columnWidth = Math.floor(this.props.width / columnNum);
       var leftoverWidth = this.props.width - (columnNum - 1) * columnWidth;
-      var columnLabels = this.props.data[0].keys();
+      var columnLabels = Object.keys(this.props.data[0]);
 
       return _react2.default.createElement(
-        _reactSortablePane.SortablePane,
-        {
-          direction: "horizontal",
-          onResize: function onResize(id, dir, size, rect) {
-            return null;
-          },
-          onOrderChange: function onOrderChange(panes) {
-            return null;
-          },
-          disableEffect: true,
-          className: "sortable-pane",
-          id: "scrollbar-style"
-        },
-        columnLabels.map(function (item, i) {
-          return _react2.default.createElement(
-            _reactSortablePane.Pane,
-            {
-              id: "sp" + i,
-              key: "sp" + i,
-              width: i < columnNum - 1 ? columnWidth : leftoverWidth,
-              height: _this2.props.containerHeight - 10,
-              className: "sort-panel",
-              isResizable: { x: true, y: false, xy: false }
+        "div",
+        { className: "sort-container" },
+        _react2.default.createElement(
+          _reactSortablePane.SortablePane,
+          {
+            direction: "horizontal",
+            onResize: function onResize(id, dir, size, rect) {
+              return null;
             },
-            _react2.default.createElement(_tableColumn2.default, {
-              key: "tc" + i,
-              value: item,
-              data: _this2.props.data,
-              sortAction: _this2.props.sortAction,
-              editAction: _this2.props.EditAction,
-              clickAction: _this2.props.clickAction })
-          );
-        })
+            onOrderChange: function onOrderChange(panes) {
+              return null;
+            },
+            disableEffect: true,
+            className: "sortable-pane"
+          },
+          columnLabels.map(function (item, i) {
+            return _react2.default.createElement(
+              _reactSortablePane.Pane,
+              {
+                id: "sp" + i,
+                key: "sp" + i,
+                width: i < columnNum - 1 ? columnWidth : leftoverWidth,
+                height: _this2.props.height - 8,
+                className: "sort-panel",
+                isResizable: { x: true, y: false, xy: false }
+              },
+              _react2.default.createElement(_TableColumn2.default, {
+                key: "tc" + i,
+                value: item,
+                data: _this2.props.data,
+                sortField: _this2.props.sortField,
+                sortDirection: _this2.props.sortDirection,
+                sortAction: _this2.props.sortAction,
+                editAction: _this2.props.editAction,
+                clickAction: _this2.props.clickAction })
+            );
+          })
+        )
       );
     }
   }]);

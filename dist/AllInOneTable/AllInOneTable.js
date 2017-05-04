@@ -52,9 +52,11 @@ var DnDOverlay = function (_React$Component) {
             var width = _ref.width,
                 height = _ref.height;
             return _react2.default.createElement(_TableContainer2.default, {
-              width: _this2.props.containerWidth,
-              height: _this2.props.containerHeight,
-              data: data,
+              width: width,
+              height: height,
+              data: _this2.props.data,
+              sortField: _this2.props.sortField,
+              sortDirection: _this2.props.sortDirection,
               sortAction: _this2.props.sortAction,
               editAction: _this2.props.editAction,
               clickAction: _this2.props.clickAction });

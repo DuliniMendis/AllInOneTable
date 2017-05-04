@@ -12,9 +12,9 @@ var _react2 = _interopRequireDefault(_react);
 
 require("./TableColumn.css");
 
-var _tableCell = require("../tableCell");
+var _TableCell = require("../TableCell");
 
-var _tableCell2 = _interopRequireDefault(_tableCell);
+var _TableCell2 = _interopRequireDefault(_TableCell);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41,12 +41,14 @@ var TableColumn = function (_React$Component) {
       return _react2.default.createElement(
         "div",
         { className: "table-column" },
-        _react2.default.createElement(_tableCell2.default, { key: "tc-header" + this.props.value,
+        _react2.default.createElement(_TableCell2.default, { key: "tc-header" + this.props.value,
           type: "header",
           text: this.props.value,
+          sortField: this.props.sortField,
+          sortDirection: this.props.sortDirection,
           sortAction: this.props.sortAction }),
         this.props.data.map(function (item, i) {
-          return _react2.default.createElement(_tableCell2.default, {
+          return _react2.default.createElement(_TableCell2.default, {
             key: "tc" + _this2.props.value + "-" + i,
             position: i,
             type: "cell",

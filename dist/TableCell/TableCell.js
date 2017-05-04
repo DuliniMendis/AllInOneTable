@@ -93,18 +93,29 @@ var TableCell = function (_React$Component) {
 			if (this.state.value !== this.state.initialVlaue) this.props.editAction(this.props.code, this.props.field, this.state.value);
 		}
 	}, {
+		key: 'handleHeaderClick',
+		value: function handleHeaderClick() {
+			this.props.sortAction(this.props.text);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 
+			var sortIcon = _react2.default.createElement('i', { className: 'fa fa-sort', 'aria-hidden': 'true' });
+			if (this.props.sortField === this.props.text) {
+				if (this.props.sortDirection) sortIcon = _react2.default.createElement('i', { className: 'fa fa-sort-desc', 'aria-hidden': 'true' });else sortIcon = _react2.default.createElement('i', { className: 'fa fa-sort-asc', 'aria-hidden': 'true' });;
+			}
+
 			if (this.props.type === "header") {
+
 				return _react2.default.createElement(
 					'div',
 					{ className: 'table-header-cell' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'sort-text', onClick: this.props.sortAction(this.props.value) },
+						{ className: 'sort-text', onClick: this.handleHeaderClick.bind(this) },
 						this.state.value,
-						true ? "▾" : "▴"
+						sortIcon
 					)
 				);
 			} else {
@@ -112,8 +123,12 @@ var TableCell = function (_React$Component) {
 					if (this.state.isEditing === false) return _react2.default.createElement(
 						'div',
 						{ className: 'table-cell',
-							onDoubleClick: this.handleDoubleClick.bond(this) },
-						this.state.value
+							onDoubleClick: this.handleDoubleClick.bind(this) },
+						_react2.default.createElement(
+							'div',
+							{ className: 'cell-text' },
+							this.state.value
+						)
 					);else {
 						return _react2.default.createElement(
 							'div',
