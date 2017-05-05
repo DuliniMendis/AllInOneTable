@@ -9,7 +9,7 @@ This component uses the following npm packages:
 An example for using this component is given below:
 ```
 import React, { Component } from 'react';
-import AllInOneTable from './AllInOneTable';
+import AllInOneTable from 'AllInOneTable';
 import './App.css';
 
 import FontAwesome from 'react-fontawesome';
@@ -96,11 +96,10 @@ export default class App extends Component {
     }
   }
 
-  handleSort (field) {
+  handleSort = (field) => {
     
     let data = this.state.data.slice();
 
-    console.log(data[0][field]>data[1][field]);
     let sortedData = data.sort((a,b)=>{
       if(this.state.sortDirectionAsc) {
         if(a[field]>b[field])
@@ -127,14 +126,14 @@ export default class App extends Component {
    
  }
 
- handleEdit (code,field,value)  {   
+ handleEdit = (code,field,value) =>  {   
     let data = this.state.data;
     let itemIndex = data.findIndex((item)=>{return item.code===code;});
     data[itemIndex][field] = value;
     this.setState({data:data});
  }
 
-handleClick (code,field,value)  {
+handleClick = (code,field,value) => {
  //do something
 }
 
@@ -146,9 +145,9 @@ handleClick (code,field,value)  {
         data={this.state.data} 
         sortField={this.state.sortField}
         sortDirection={this.state.sortDirectionAsc} 
-        sortAction={this.handleSort.bind(this)}         
-        editAction={this.handleEdit.bind(this)}
-        clickAction={this.handleClick.bind(this)}/> 
+        sortAction={this.handleSort}         
+        editAction={this.handleEdit}
+        clickAction={this.handleClick}/> 
 
 
     </div>
