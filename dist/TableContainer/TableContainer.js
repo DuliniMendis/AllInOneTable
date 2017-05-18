@@ -77,7 +77,6 @@ var TableContainer = function (_React$Component) {
                             _react2.default.createElement(_TableColumn2.default, {
                                 key: "tc" + i,
                                 value: item,
-                                id: "",
                                 type: _this2.props.fields[item].type,
                                 label: _this2.props.fields[item].label,
                                 disabled: _this2.props.fields[item].disabled,

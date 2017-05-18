@@ -41,8 +41,7 @@ export default class TableContainer extends React.Component {
       >
       <TableColumn 
       key={"tc"+i} 
-      value={item} 
-      id=""
+      value={item}
       type={this.props.fields[item].type} 
       label={this.props.fields[item].label} 
       disabled={this.props.fields[item].disabled}
