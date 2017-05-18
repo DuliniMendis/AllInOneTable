@@ -9,7 +9,7 @@ export default class AllInOneTable extends React.Component {
 
 render() {
 
-console.log(this.props)
+
   let fieldKeys = Object.keys(this.props.fields);
   let dataKeys = Object.keys(this.props.data[0]);
   let error = false;

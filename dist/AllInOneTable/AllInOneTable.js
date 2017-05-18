@@ -42,7 +42,6 @@ var AllInOneTable = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log(this.props);
       var fieldKeys = Object.keys(this.props.fields);
       var dataKeys = Object.keys(this.props.data[0]);
       var error = false;
