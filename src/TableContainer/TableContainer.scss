@@ -6,11 +6,12 @@
 	overflow-x:hidden;
 }
 .sort-panel{
-	
+	background-color: $color-light;
 	position:absolute;
 	display: inline-block;
 	box-sizing: border-box;
-
+	border-right: 1px solid $color-mid-light;
+border-left: 1px solid $color-mid-light;
 };
 
 

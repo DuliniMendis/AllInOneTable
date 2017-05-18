@@ -4,9 +4,12 @@
   overflow-x: hidden; }
 
 .sort-panel {
+  background-color: #ffffff;
   position: absolute;
   display: inline-block;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border-right: 1px solid #dddddd;
+  border-left: 1px solid #dddddd; }
 
 .sortable-pane {
   width: 100%;
