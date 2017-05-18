@@ -14,7 +14,6 @@ import './App.css';
 
 import FontAwesome from 'react-fontawesome';
 
-
 export default class App extends Component {
   constructor(){
     super();
@@ -24,76 +23,94 @@ export default class App extends Component {
       data : [
       {
         code: "j000",
-        label: "Software Engineer",
+        title: "Software Engineer",
         company: "OutcomeHub",
-        contact: "Dom",
-        requiredNum: 2,          
+        contact: "Dom",               
         phone: "0416234098",
-        applied: 5,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0        
+        required: 2      
       },
       {
         code: "j001",
-        label: "Business Analyst",
+        title: "Business Analyst",
         company: "OutcomeHub",
-        contact: "Adam",
-        requiredNum: 1,
+        contact: "Adam",        
         phone: "0416957846",
-        applied: 4,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
+        required: 1
       },
       {
         code: "j002",
-        label: "Project Manager",
+        title: "Project Manager",
         company: "OutcomeHub",
         contact: "Gerard",
-        requiredNum: 1,
         phone: "0416099284",
-        applied: 4,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
+        required: 1
       },
       {
         code: "j003",
-        label: "Marketing Intern",
+        title: "Marketing Intern",
         company: "OutcomeHub",
         contact: "Dom",
-        requiredNum: 2,
         phone: "0416234098",
-        applied: 3,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
+        required: 1
       },
       {
         code: "j004",
-        label: "UI/UX Designer",
+        title: "UI/UX Designer",
         company: "OutcomeHub",
         contact: "Dom",
-        requiredNum: 1,
         phone: "0416234098",
-        applied: 1,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
+        required: 1
       }
-      ]
+      ],    
+    fields:{
+       code: {
+        id:0,
+        type:'text',
+        label:'Code',
+        min:1,
+        max:100,
+        disabled:true
+      },
+      title: {
+        id:1,
+        type:'text',
+        label:'Title',
+        min:1,
+        max:100,
+        disabled:true
+      },
+      company: {
+        id:2,
+        type:'text',
+        label:'Company',
+        min:1,
+        max:100
+      },
+      contact: {
+        id:3,
+        type:'text',
+        label:'Contact',
+        min:1,
+        max:100
+      },
+      phone: {
+        id:4,
+        type:'integer',
+        label:'Phone',
+        min:1,
+        max:100
+      },
+      required: {
+        id:0,
+        type:'integer',
+        label:'Required',
+        min:1,
+        max:100
+      }
+
     }
+    }
+    
   }
 
   handleSort = (field) => {
@@ -127,15 +144,17 @@ export default class App extends Component {
  }
 
  handleEdit = (code,field,value) =>  {   
+  console.log(code,field,value)
     let data = this.state.data;
     let itemIndex = data.findIndex((item)=>{return item.code===code;});
     data[itemIndex][field] = value;
     this.setState({data:data});
  }
 
-handleClick = (code,field,value) => {
- //do something
+handleClick (code,field,value)  {
+
 }
+
 
  render() {
   return (
@@ -143,6 +162,7 @@ handleClick = (code,field,value) => {
 
      <AllInOneTable        
         data={this.state.data} 
+        fields={this.state.fields}
         sortField={this.state.sortField}
         sortDirection={this.state.sortDirectionAsc} 
         sortAction={this.handleSort}         
@@ -154,4 +174,5 @@ handleClick = (code,field,value) => {
     );
 }
 }
+
 ```
