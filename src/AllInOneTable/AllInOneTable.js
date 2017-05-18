@@ -3,12 +3,12 @@ import TableContainer from '../TableContainer';
 import './AllInOneTable.css';
 import ContainerDimensions from 'react-container-dimensions';
 
-export default class DnDOverlay extends React.Component {
+export default class AllInOneTable extends React.Component {
 
   
 
 render() {
-
+try{
   let fieldKeys = Object.keys(this.props.fields);
   let dataKeys = Object.keys(this.props.data[0]);
   let error = false;
@@ -41,6 +41,12 @@ render() {
 
   else
     return (<div>Fields and data mismatch</div>);
+
+}
+catch(error){
+   return (<div>Table could not be loaded</div>);
+}
+
 }
 }
 

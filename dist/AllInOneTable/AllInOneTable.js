@@ -28,57 +28,65 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DnDOverlay = function (_React$Component) {
-  _inherits(DnDOverlay, _React$Component);
+var AllInOneTable = function (_React$Component) {
+  _inherits(AllInOneTable, _React$Component);
 
-  function DnDOverlay() {
-    _classCallCheck(this, DnDOverlay);
+  function AllInOneTable() {
+    _classCallCheck(this, AllInOneTable);
 
-    return _possibleConstructorReturn(this, (DnDOverlay.__proto__ || Object.getPrototypeOf(DnDOverlay)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (AllInOneTable.__proto__ || Object.getPrototypeOf(AllInOneTable)).apply(this, arguments));
   }
 
-  _createClass(DnDOverlay, [{
+  _createClass(AllInOneTable, [{
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      var fieldKeys = Object.keys(this.props.fields);
-      var dataKeys = Object.keys(this.props.data[0]);
-      var error = false;
+      try {
+        var fieldKeys = Object.keys(this.props.fields);
+        var dataKeys = Object.keys(this.props.data[0]);
+        var error = false;
 
-      for (var i = 0; i < fieldKeys.length; i++) {
-        if (fieldKeys[i] !== dataKeys[i]) error = true;
-      }
-      if (error === false) return _react2.default.createElement(
-        'div',
-        { className: 'full-width-height' },
-        _react2.default.createElement(
-          _reactContainerDimensions2.default,
+        for (var i = 0; i < fieldKeys.length; i++) {
+          if (fieldKeys[i] !== dataKeys[i]) error = true;
+        }
+        if (error === false) return _react2.default.createElement(
+          'div',
+          { className: 'full-width-height' },
+          _react2.default.createElement(
+            _reactContainerDimensions2.default,
+            null,
+            function (_ref) {
+              var width = _ref.width,
+                  height = _ref.height;
+              return _react2.default.createElement(_TableContainer2.default, {
+                width: width,
+                height: height,
+                data: _this2.props.data,
+                fields: _this2.props.fields,
+                sortField: _this2.props.sortField,
+                sortDirection: _this2.props.sortDirection,
+                sortAction: _this2.props.sortAction,
+                editAction: _this2.props.editAction,
+                clickAction: _this2.props.clickAction });
+            }
+          )
+        );else return _react2.default.createElement(
+          'div',
           null,
-          function (_ref) {
-            var width = _ref.width,
-                height = _ref.height;
-            return _react2.default.createElement(_TableContainer2.default, {
-              width: width,
-              height: height,
-              data: _this2.props.data,
-              fields: _this2.props.fields,
-              sortField: _this2.props.sortField,
-              sortDirection: _this2.props.sortDirection,
-              sortAction: _this2.props.sortAction,
-              editAction: _this2.props.editAction,
-              clickAction: _this2.props.clickAction });
-          }
-        )
-      );else return _react2.default.createElement(
-        'div',
-        null,
-        'Fields and data mismatch'
-      );
+          'Fields and data mismatch'
+        );
+      } catch (error) {
+        return _react2.default.createElement(
+          'div',
+          null,
+          'Table could not be loaded'
+        );
+      }
     }
   }]);
 
-  return DnDOverlay;
+  return AllInOneTable;
 }(_react2.default.Component);
 
-exports.default = DnDOverlay;
+exports.default = AllInOneTable;
