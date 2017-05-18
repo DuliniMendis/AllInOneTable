@@ -7,7 +7,6 @@ export default class TableColumn extends React.Component {
 
 
   render() {
-    
 
    return (
 
@@ -16,7 +15,8 @@ export default class TableColumn extends React.Component {
       <TableCell key={"tc-header"+this.props.value} 
         type="header" 
         text={this.props.value} 
-          sortField={this.props.sortField}
+        label={this.props.label}
+        sortField={this.props.sortField}
         sortDirection={this.props.sortDirection} 
         sortAction={this.props.sortAction}    />
 
@@ -27,7 +27,15 @@ export default class TableColumn extends React.Component {
           type="cell" 
           code={item.code}
           field={this.props.value}
-          text={item[this.props.value]}           
+          text={item[this.props.value]}  
+          type={this.props.type} 
+          disabled={this.props.disabled}
+          mask={this.props.mask} 
+          placeholder={this.props.placeholder}             
+          regex={this.props.regex}      
+          min={this.props.min}
+          max={this.props.max}
+          options={this.props.options}         
           editAction={this.props.editAction} 
           clickAction={this.props.clickAction}     />
       })}

@@ -1,6 +1,6 @@
 @import '../styles/theme.scss';
-@import '../styles/font-awesome.min.css';
-
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .cell{	    
     font-family: $font-text;    
@@ -67,13 +67,17 @@
 .table-cell{
     @extend .cell;
     color: $color-dark;
-    height: 35px;
+    height: 45px;
+    overflow-y:hidden;
     font-size: $font-size-s;
     padding:10px 0;
     display:table;
     width:100%;
+    box-sizing:border-box;
 }
 
+.isEditing {
+  padding: 0px; }
 
 .cell-text{
      display: table-cell;
@@ -81,11 +85,8 @@
     width:100%;
     text-overflow: ellipsis;
     word-break:keep-all;
+        box-sizing:border-box;
 }
-.isEditing{
-    padding:0px;
-}
-
 
 .clickable{
     cursor:pointer;
@@ -97,17 +98,6 @@
 }
 
 
-
-input{
-    width:100%;
-    height:100%;
-    border: 1px solid $color-primary;
-    box-shadow: inset 0px 0px 5px $color-primary;
-    padding:3px;
-    margin:0px;
-    box-sizing:border-box;
-    text-align:center;
-}
 
 .btn{
     width:90%;
