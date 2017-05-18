@@ -6,13 +6,11 @@
 	overflow-x:hidden;
 }
 .sort-panel{
-	background-color: $color-light;
-	border: 1px solid $color-mid-light;
-	border-top:none;
-	border-left:none;
+	
 	position:absolute;
 	display: inline-block;
 	box-sizing: border-box;
+
 };
 
 
@@ -21,6 +19,7 @@
 	height:100%;
 	position:relative;
 	overflow-x:scroll;
+	overflow-y:scroll;
 }
 
 

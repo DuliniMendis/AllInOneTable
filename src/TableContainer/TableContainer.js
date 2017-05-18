@@ -16,6 +16,7 @@ export default class TableContainer extends React.Component {
    let leftoverWidth = this.props.width-(columnNum-1)*columnWidth;
    let columnLabels = Object.keys(this.props.fields);
 
+   // let value = document.getElementById('myDiv').clientHeight
 
    return (
 
@@ -34,13 +35,14 @@ export default class TableContainer extends React.Component {
       id={"sp"+i}
       key={"sp"+i}
       width={(i<columnNum-1)?columnWidth:leftoverWidth}
-      
+      height="100%"
       className="sort-panel"
       isResizable={{ x: true, y: false, xy: false }}        
       >
       <TableColumn 
       key={"tc"+i} 
       value={item} 
+      id=""
       type={this.props.fields[item].type} 
       label={this.props.fields[item].label} 
       disabled={this.props.fields[item].disabled}
