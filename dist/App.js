@@ -36,111 +36,406 @@ var App = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-    _this.state = {
-      sortDirectionAsc: true,
-      sortField: "",
-      data: [{
-        code: "j000",
-        label: "Software Engineer",
-        company: "OutcomeHub",
-        contact: "Dom",
-        requiredNum: 2,
-        phone: "0416234098",
-        applied: 5,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
-      }, {
-        code: "j001",
-        label: "Business Analyst",
-        company: "OutcomeHub",
-        contact: "Adam",
-        requiredNum: 1,
-        phone: "0416957846",
-        applied: 4,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
-      }, {
-        code: "j002",
-        label: "Project Manager",
-        company: "OutcomeHub",
-        contact: "Gerard",
-        requiredNum: 1,
-        phone: "0416099284",
-        applied: 4,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
-      }, {
-        code: "j003",
-        label: "Marketing Intern",
-        company: "OutcomeHub",
-        contact: "Dom",
-        requiredNum: 2,
-        phone: "0416234098",
-        applied: 3,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
-      }, {
-        code: "j004",
-        label: "UI/UX Designer",
-        company: "OutcomeHub",
-        contact: "Dom",
-        requiredNum: 1,
-        phone: "0416234098",
-        applied: 1,
-        screened: 0,
-        interviewed: 0,
-        shortlisted: 0,
-        offer: 0,
-        placed: 0
-      }]
-    };
-    return _this;
-  }
+    _this.handleSort = function (field) {
 
-  _createClass(App, [{
-    key: 'handleSort',
-    value: function handleSort(field) {
-      var _this2 = this;
+      var data = _this.state.data.slice();
 
-      var data = this.state.data.slice();
-
-      console.log(data[0][field] > data[1][field]);
       var sortedData = data.sort(function (a, b) {
-        if (_this2.state.sortDirectionAsc) {
+        if (_this.state.sortDirectionAsc) {
           if (a[field] > b[field]) return 1;else if (a[field] < b[field]) return -1;else return 0;
         } else {
           if (a[field] > b[field]) return -1;else if (a[field] < b[field]) return 1;else return 0;
         }
       });
-      this.setState({
+      _this.setState({
         data: sortedData,
-        sortDirectionAsc: !this.state.sortDirectionAsc,
+        sortDirectionAsc: !_this.state.sortDirectionAsc,
         sortField: field
       });
-    }
-  }, {
-    key: 'handleEdit',
-    value: function handleEdit(code, field, value) {
-      var data = this.state.data;
+    };
+
+    _this.handleEdit = function (code, field, value) {
+      console.log(code, field, value);
+      var data = _this.state.data;
       var itemIndex = data.findIndex(function (item) {
         return item.code === code;
       });
       data[itemIndex][field] = value;
-      this.setState({ data: data });
-    }
-  }, {
+      _this.setState({ data: data });
+    };
+
+    _this.state = {
+      sortDirectionAsc: true,
+      sortField: "",
+      data: [{
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j000",
+        title: "Software Engineer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 2
+      }, {
+        code: "j001",
+        title: "Business Analyst",
+        company: "OutcomeHub",
+        contact: "Adam",
+        phone: "0416957846",
+        required: 1
+      }, {
+        code: "j002",
+        title: "Project Manager",
+        company: "OutcomeHub",
+        contact: "Gerard",
+        phone: "0416099284",
+        required: 1
+      }, {
+        code: "j003",
+        title: "Marketing Intern",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }, {
+        code: "j004",
+        title: "UI/UX Designer",
+        company: "OutcomeHub",
+        contact: "Dom",
+        phone: "0416234098",
+        required: 1
+      }],
+      fields: {
+        code: {
+          id: 0,
+          type: 'text',
+          label: 'Code',
+          min: 1,
+          max: 100,
+          disabled: true
+        },
+        title: {
+          id: 1,
+          type: 'text',
+          label: 'Title',
+          min: 1,
+          max: 100,
+          disabled: true
+        },
+        company: {
+          id: 2,
+          type: 'text',
+          label: 'Company',
+          min: 1,
+          max: 100
+        },
+        contact: {
+          id: 3,
+          type: 'text',
+          label: 'Contact',
+          min: 1,
+          max: 100
+        },
+        phone: {
+          id: 4,
+          type: 'integer',
+          label: 'Phone',
+          min: 1,
+          max: 100
+        },
+        required: {
+          id: 0,
+          type: 'integer',
+          label: 'Required',
+          min: 1,
+          max: 100
+        }
+
+      }
+    };
+
+    return _this;
+  }
+
+  _createClass(App, [{
     key: 'handleClick',
     value: function handleClick(code, field, value) {}
   }, {
@@ -151,11 +446,12 @@ var App = function (_Component) {
         { className: 'App' },
         _react2.default.createElement(_AllInOneTable2.default, {
           data: this.state.data,
+          fields: this.state.fields,
           sortField: this.state.sortField,
           sortDirection: this.state.sortDirectionAsc,
-          sortAction: this.handleSort.bind(this),
-          editAction: this.handleEdit.bind(this),
-          clickAction: this.handleClick.bind(this) })
+          sortAction: this.handleSort,
+          editAction: this.handleEdit,
+          clickAction: this.handleClick })
       );
     }
   }]);

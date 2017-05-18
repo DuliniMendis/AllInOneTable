@@ -16,6 +16,10 @@ var _reactOnclickoutside = require('react-onclickoutside');
 
 var _reactOnclickoutside2 = _interopRequireDefault(_reactOnclickoutside);
 
+var _FormComponent = require('FormComponent');
+
+var _FormComponent2 = _interopRequireDefault(_FormComponent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31,6 +35,32 @@ var TableCell = function (_React$Component) {
 		_classCallCheck(this, TableCell);
 
 		var _this = _possibleConstructorReturn(this, (TableCell.__proto__ || Object.getPrototypeOf(TableCell)).call(this, props));
+
+		_this.handleDoubleClick = function (evt) {
+
+			if (_this.state.isEditable === true) _this.setState({ isEditing: true });
+		};
+
+		_this.handleClick = function (evt) {
+			_this.props.clickAction(_this.props.code);
+		};
+
+		_this.handleChange = function (id, value) {
+			_this.props.editAction(_this.props.code, _this.props.field, value);
+		};
+
+		_this.handleClickOutside = function (e) {
+
+			_this.setState({
+				isEditing: false,
+				value: _this.state.initialVlaue
+			});
+			if (_this.state.value !== _this.state.initialVlaue) _this.props.editAction(_this.props.code, _this.props.field, _this.state.value);
+		};
+
+		_this.handleHeaderClick = function (evt) {
+			_this.props.sortAction(_this.props.text);
+		};
 
 		_this.state = {
 			isEditable: props.type === "header" ? false : true,
@@ -51,55 +81,46 @@ var TableCell = function (_React$Component) {
 				initialVlaue: nextProps.text
 			});
 		}
-	}, {
-		key: 'handleDoubleClick',
-		value: function handleDoubleClick(evt) {
 
-			if (this.state.isEditable === true) this.setState({ isEditing: true });
-		}
-	}, {
-		key: 'handleClick',
-		value: function handleClick(evt) {
-			this.props.clickAction(this.props.code);
-		}
-	}, {
-		key: 'handleOnChange',
-		value: function handleOnChange(evt) {
+		// handleOnChange = (evt) => {
 
-			this.setState({
-				value: evt.target.value
-			});
-		}
-	}, {
-		key: 'handleKeyPress',
-		value: function handleKeyPress(evt) {
+		// 	this.setState({
+		//     		value:evt.target.value
+		//     	});		
 
-			if (evt.key === 'Enter') {
-				//Enter keycode
-				this.setState({
-					isEditing: false
-				});
-				this.props.editAction(this.props.code, this.props.field, this.state.value);
-			}
-		}
-	}, {
-		key: 'handleClickOutside',
-		value: function handleClickOutside(e) {
 
-			this.setState({
-				isEditing: false,
-				value: this.state.initialVlaue
-			});
-			if (this.state.value !== this.state.initialVlaue) this.props.editAction(this.props.code, this.props.field, this.state.value);
-		}
-	}, {
-		key: 'handleHeaderClick',
-		value: function handleHeaderClick() {
-			this.props.sortAction(this.props.text);
-		}
+		// }
+
+
+		// handleKeyPress = (evt) =>  {
+
+		// 	if(evt.key === 'Enter') { //Enter keycode
+		//     	this.setState({	    		
+		//     		isEditing: false
+		//     	});
+		//    	this.props.editAction(this.props.code,this.props.field,this.state.value);
+		// 	}
+
+		// }
+
 	}, {
 		key: 'render',
 		value: function render() {
+
+			var styles = {
+				style: {
+					fontSize: '14px',
+					height: '40px',
+					width: '90%'
+				},
+				inputStyle: {
+					paddingLeft: '5px',
+					paddingRight: '5px',
+					textAlign: 'center',
+					boxSizing: 'border-box'
+				},
+				underlineStyle: {}
+			};
 
 			var sortIcon = _react2.default.createElement('i', { className: 'fa fa-sort', 'aria-hidden': 'true' });
 			if (this.props.sortField === this.props.text) {
@@ -113,17 +134,17 @@ var TableCell = function (_React$Component) {
 					{ className: 'table-header-cell' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'sort-text', onClick: this.handleHeaderClick.bind(this) },
-						this.state.value,
+						{ className: 'sort-text', onClick: this.handleHeaderClick },
+						this.props.label,
 						sortIcon
 					)
 				);
 			} else {
-				if (this.props.field !== "title") {
+				if (!this.props.disabled) {
 					if (this.state.isEditing === false) return _react2.default.createElement(
 						'div',
 						{ className: 'table-cell',
-							onDoubleClick: this.handleDoubleClick.bind(this) },
+							onDoubleClick: this.handleDoubleClick },
 						_react2.default.createElement(
 							'div',
 							{ className: 'cell-text' },
@@ -133,23 +154,37 @@ var TableCell = function (_React$Component) {
 						return _react2.default.createElement(
 							'div',
 							{ className: 'table-cell isEditing' },
-							_react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleOnChange.bind(this), onKeyPress: this.handleKeyPress.bind(this) })
+							_react2.default.createElement(
+								'div',
+								{ className: 'cell-text' },
+								_react2.default.createElement(_FormComponent2.default, {
+									id: this.props.code,
+									type: this.props.type,
+									value: this.props.text,
+									mask: this.props.mask,
+									placeholder: this.props.placeholder,
+									regex: this.props.regex,
+									min: this.props.min,
+									max: this.props.max,
+									options: this.props.options,
+									styles: styles,
+									changeComponent: this.handleChange })
+							)
 						);
 					}
 				} else {
-					if (this.state.isEditing === false) return _react2.default.createElement(
+
+					return _react2.default.createElement(
 						'div',
 						{ className: "table-cell clickable",
-							onClick: this.props.handleClick(this.props.code, this.props.value),
-							onDoubleClick: this.handleDoubleClick.bind(this) },
-						this.state.value
-					);else {
-						return _react2.default.createElement(
+							onClick: this.handleClick(this.props.code, this.props.value),
+							onDoubleClick: this.handleDoubleClick },
+						_react2.default.createElement(
 							'div',
-							{ className: 'table-cell isEditing' },
-							_react2.default.createElement('input', { type: 'text', value: this.state.value, onChange: this.handleOnChange.bind(this), onKeyPress: this.handleKeyPress.bind(this) })
-						);
-					}
+							{ className: 'cell-text' },
+							this.state.value
+						)
+					);
 				}
 			}
 		}

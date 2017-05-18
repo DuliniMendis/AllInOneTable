@@ -42,7 +42,14 @@ var DnDOverlay = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return _react2.default.createElement(
+      var fieldKeys = Object.keys(this.props.fields);
+      var dataKeys = Object.keys(this.props.data[0]);
+      var error = false;
+
+      for (var i = 0; i < fieldKeys.length; i++) {
+        if (fieldKeys[i] !== dataKeys[i]) error = true;
+      }
+      if (error === false) return _react2.default.createElement(
         'div',
         { className: 'full-width-height' },
         _react2.default.createElement(
@@ -55,6 +62,7 @@ var DnDOverlay = function (_React$Component) {
               width: width,
               height: height,
               data: _this2.props.data,
+              fields: _this2.props.fields,
               sortField: _this2.props.sortField,
               sortDirection: _this2.props.sortDirection,
               sortAction: _this2.props.sortAction,
@@ -62,6 +70,10 @@ var DnDOverlay = function (_React$Component) {
               clickAction: _this2.props.clickAction });
           }
         )
+      );else return _react2.default.createElement(
+        'div',
+        null,
+        'Fields and data mismatch'
       );
     }
   }]);

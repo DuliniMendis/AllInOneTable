@@ -1,7 +1,7 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27,68 +27,80 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var TableContainer = function (_React$Component) {
-  _inherits(TableContainer, _React$Component);
+    _inherits(TableContainer, _React$Component);
 
-  function TableContainer() {
-    _classCallCheck(this, TableContainer);
+    function TableContainer() {
+        _classCallCheck(this, TableContainer);
 
-    return _possibleConstructorReturn(this, (TableContainer.__proto__ || Object.getPrototypeOf(TableContainer)).apply(this, arguments));
-  }
-
-  _createClass(TableContainer, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var columnNum = Object.keys(this.props.data[0]).length;
-      var columnWidth = Math.floor(this.props.width / columnNum);
-      var leftoverWidth = this.props.width - (columnNum - 1) * columnWidth;
-      var columnLabels = Object.keys(this.props.data[0]);
-
-      return _react2.default.createElement(
-        "div",
-        { className: "sort-container" },
-        _react2.default.createElement(
-          _reactSortablePane.SortablePane,
-          {
-            direction: "horizontal",
-            onResize: function onResize(id, dir, size, rect) {
-              return null;
-            },
-            onOrderChange: function onOrderChange(panes) {
-              return null;
-            },
-            disableEffect: true,
-            className: "sortable-pane"
-          },
-          columnLabels.map(function (item, i) {
-            return _react2.default.createElement(
-              _reactSortablePane.Pane,
-              {
-                id: "sp" + i,
-                key: "sp" + i,
-                width: i < columnNum - 1 ? columnWidth : leftoverWidth,
-                height: _this2.props.height - 8,
-                className: "sort-panel",
-                isResizable: { x: true, y: false, xy: false }
-              },
-              _react2.default.createElement(_TableColumn2.default, {
-                key: "tc" + i,
-                value: item,
-                data: _this2.props.data,
-                sortField: _this2.props.sortField,
-                sortDirection: _this2.props.sortDirection,
-                sortAction: _this2.props.sortAction,
-                editAction: _this2.props.editAction,
-                clickAction: _this2.props.clickAction })
-            );
-          })
-        )
-      );
+        return _possibleConstructorReturn(this, (TableContainer.__proto__ || Object.getPrototypeOf(TableContainer)).apply(this, arguments));
     }
-  }]);
 
-  return TableContainer;
+    _createClass(TableContainer, [{
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            var columnNum = Object.keys(this.props.data[0]).length;
+            var columnWidth = Math.floor(this.props.width / columnNum);
+            var leftoverWidth = this.props.width - (columnNum - 1) * columnWidth;
+            var columnLabels = Object.keys(this.props.fields);
+
+            // let value = document.getElementById('myDiv').clientHeight
+
+            return _react2.default.createElement(
+                "div",
+                { className: "sort-container" },
+                _react2.default.createElement(
+                    _reactSortablePane.SortablePane,
+                    {
+                        direction: "horizontal",
+                        onResize: function onResize(id, dir, size, rect) {
+                            return null;
+                        },
+                        onOrderChange: function onOrderChange(panes) {
+                            return null;
+                        },
+                        disableEffect: true,
+                        className: "sortable-pane"
+                    },
+                    columnLabels.map(function (item, i) {
+                        return _react2.default.createElement(
+                            _reactSortablePane.Pane,
+                            {
+                                id: "sp" + i,
+                                key: "sp" + i,
+                                width: i < columnNum - 1 ? columnWidth : leftoverWidth,
+                                height: "100%",
+                                className: "sort-panel",
+                                isResizable: { x: true, y: false, xy: false }
+                            },
+                            _react2.default.createElement(_TableColumn2.default, {
+                                key: "tc" + i,
+                                value: item,
+                                id: "",
+                                type: _this2.props.fields[item].type,
+                                label: _this2.props.fields[item].label,
+                                disabled: _this2.props.fields[item].disabled,
+                                mask: _this2.props.fields[item].mask,
+                                placeholder: _this2.props.fields[item].placeholder,
+                                regex: _this2.props.fields[item].regex,
+                                min: _this2.props.fields[item].min,
+                                max: _this2.props.fields[item].max,
+                                options: _this2.props.fields[item].options,
+                                data: _this2.props.data,
+                                sortField: _this2.props.sortField,
+                                sortDirection: _this2.props.sortDirection,
+                                sortAction: _this2.props.sortAction,
+                                editAction: _this2.props.editAction,
+                                clickAction: _this2.props.clickAction })
+                        );
+                    })
+                )
+            );
+        }
+    }]);
+
+    return TableContainer;
 }(_react2.default.Component);
 
 exports.default = TableContainer;
