@@ -8,7 +8,8 @@ export default class AllInOneTable extends React.Component {
   
 
 render() {
-try{
+
+console.log(this.props)
   let fieldKeys = Object.keys(this.props.fields);
   let dataKeys = Object.keys(this.props.data[0]);
   let error = false;
@@ -42,10 +43,8 @@ try{
   else
     return (<div>Fields and data mismatch</div>);
 
-}
-catch(error){
-   return (<div>Table could not be loaded</div>);
-}
+
+
 
 }
 }
